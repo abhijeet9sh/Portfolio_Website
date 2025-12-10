@@ -15,7 +15,7 @@ const Hero = () => {
                 <BentoCard colSpan={1} rowSpan={2} className="!p-2 overflow-hidden relative group !rounded-xl">
                     <div className="absolute inset-2 w-auto h-auto">
                         <img
-                            src="/assets/images/profile-pic.png"
+                            src={`${import.meta.env.BASE_URL}assets/images/profile-pic.png`}
                             alt={personal.name}
                             loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-lg"
