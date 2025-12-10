@@ -39,7 +39,7 @@ const Certifications = () => {
                             <div className="w-12 h-12 flex-shrink-0 bg-white rounded-lg p-2 flex items-center justify-center overflow-hidden">
                                 {cert.logo && !failedLogos.has(index) ? (
                                     <img
-                                        src={cert.logo}
+                                        src={cert.logo.startsWith('http') ? cert.logo : `${import.meta.env.BASE_URL}${cert.logo.replace(/^\//, '')}`}
                                         alt={`${cert.issuer} logo`}
                                         className="w-full h-full object-contain"
                                         onError={() => handleLogoError(index)}
