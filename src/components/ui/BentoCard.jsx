@@ -8,8 +8,8 @@ const BentoCard = ({ children, className = "", title, colSpan = 1, rowSpan = 1 }
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className={`
-        bg-surface rounded-xl p-6 border border-white/5 
-        hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 
+        bg-white/30 rounded-xl p-6 border border-black/10 
+        hover:border-primary/100 hover:shadow-lg hover:shadow-black/5 
         transition-all duration-300 flex flex-col relative overflow-hidden
         ${className}
       `}

@@ -51,7 +51,7 @@ const Certifications = () => {
                                 )}
                             </div>
                             <div className="flex-1">
-                                <h3 className="font-bold text-white text-base leading-tight mb-2">{cert.name}</h3>
+                                <h3 className="font-bold text-text text-base leading-tight mb-2 font-sans">{cert.name}</h3>
                                 <p className="text-sm text-text/70 mb-1">{cert.issuer}</p>
                                 <p className="text-xs text-primary font-mono">
                                     {cert.date}

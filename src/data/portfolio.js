@@ -1,7 +1,7 @@
 export const portfolioData = {
     personal: {
         name: "Abhijeet Priyankar",
-        title: "DevOps Engineer | Microsoft & Oracle Certified Expert",
+        title: "DevOps Engineer & Site Reliability Engineer",
         location: "New Delhi, India",
         email: "abhijeet9.sh@gmail.com",
         contact: "+91-9873625962",

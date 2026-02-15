@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import BentoCard from "../ui/BentoCard";
 import Button from "../ui/Button";
 import SectionWrapper from "../layout/SectionWrapper";
@@ -13,14 +14,36 @@ const Contact = () => {
         e.preventDefault();
         setStatus("sending");
 
-        // Fallback to email link if no form service
-        const mailtoLink = `mailto:${portfolioData.personal.email}?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
-        window.location.href = mailtoLink;
+        // Service ID, Template ID, and Public Key from EmailJS
+        // ideally these should be in .env files:
+        // VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY
+        const serviceId = "service_id_placeholder";
+        const templateId = "template_id_placeholder";
+        const publicKey = "public_key_placeholder";
 
-        setTimeout(() => {
+        try {
+            // Check if EmailJS is actually configured, else fallback to mailto
+            if (serviceId === "service_id_placeholder") {
+                throw new Error("EmailJS not configured");
+            }
+
+            await emailjs.send(serviceId, templateId, {
+                from_name: formData.name,
+                from_email: formData.email,
+                message: formData.message,
+                to_name: portfolioData.personal.name,
+            }, publicKey);
+
             setStatus("sent");
             setFormData({ name: "", email: "", message: "" });
-        }, 1000);
+            setTimeout(() => setStatus(""), 5000);
+        } catch (error) {
+            console.warn("EmailJS Error (likely missing keys):", error);
+            // Fallback to email link
+            const mailtoLink = `mailto:${portfolioData.personal.email}?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+            window.location.href = mailtoLink;
+            setStatus("");
+        }
     };
 
     return (
@@ -41,7 +64,7 @@ const Contact = () => {
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
-                                className="w-full px-4 py-3 bg-surface/50 border border-white/10 rounded-lg text-text focus:border-primary focus:outline-none transition-colors"
+                                className="w-full px-4 py-3 bg-white/50 border border-black/10 rounded-lg text-text placeholder-text/40 focus:border-primary focus:outline-none transition-colors"
                             />
                         </div>
                         <div>
@@ -51,7 +74,7 @@ const Contact = () => {
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 required
-                                className="w-full px-4 py-3 bg-surface/50 border border-white/10 rounded-lg text-text focus:border-primary focus:outline-none transition-colors"
+                                className="w-full px-4 py-3 bg-white/50 border border-black/10 rounded-lg text-text placeholder-text/40 focus:border-primary focus:outline-none transition-colors"
                             />
                         </div>
                         <div>
@@ -61,7 +84,7 @@ const Contact = () => {
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 required
-                                className="w-full px-4 py-3 bg-surface/50 border border-white/10 rounded-lg text-text focus:border-primary focus:outline-none transition-colors resize-none"
+                                className="w-full px-4 py-3 bg-white/50 border border-black/10 rounded-lg text-text placeholder-text/40 focus:border-primary focus:outline-none transition-colors resize-none"
                             />
                         </div>
                         <Button
@@ -92,7 +115,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <p className="text-text/60 text-sm">Email</p>
-                                <a href={`mailto:${portfolioData.personal.email}`} className="text-white hover:text-primary transition-colors">
+                                <a href={`mailto:${portfolioData.personal.email}`} className="text-text hover:text-primary transition-colors">
                                     {portfolioData.personal.email}
                                 </a>
                             </div>
@@ -104,7 +127,7 @@ const Contact = () => {
                             </div>
                             <div>
                                 <p className="text-text/60 text-sm">LinkedIn</p>
-                                <a href={portfolioData.personal.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+                                <a href={portfolioData.personal.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-text hover:text-primary transition-colors">
                                     Connect on LinkedIn
                                 </a>
                             </div>
@@ -116,14 +139,14 @@ const Contact = () => {
                             </div>
                             <div>
                                 <p className="text-text/60 text-sm">GitHub</p>
-                                <a href={portfolioData.personal.socials.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
+                                <a href={portfolioData.personal.socials.github} target="_blank" rel="noopener noreferrer" className="text-text hover:text-primary transition-colors">
                                     @abhijeet9sh
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-8 p-4 bg-surface/30 rounded-lg border border-white/5">
+                    <div className="mt-8 p-4 bg-white/30 rounded-lg border border-black/5">
                         <p className="text-text/60 text-sm mb-2">Currently open to:</p>
                         <div className="flex flex-wrap gap-2">
                             {portfolioData.jobPreferences.roles.map((role) => (

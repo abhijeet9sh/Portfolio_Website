@@ -8,7 +8,7 @@ const Skills = () => {
         <SectionWrapper id="skills">
             <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-2">Technical <span className="text-primary">Arsenal</span></h2>
-                <p className="text-text/60">Tools and technologies I use to build scalable infrastructure.</p>
+                <p className="text-text/70">Tools and technologies I use to build scalable infrastructure.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

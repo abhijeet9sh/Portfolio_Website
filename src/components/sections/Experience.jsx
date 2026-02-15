@@ -18,7 +18,7 @@ const Experience = () => {
                             <p className="text-sm text-primary font-mono mt-1">{job.period}</p>
                         </div>
                         <div className="md:w-3/4">
-                            <h4 className="text-lg font-semibold text-text mb-3">{job.role}</h4>
+                            <h4 className="text-lg font-semibold text-text mb-3 font-sans">{job.role}</h4>
                             <ul className="list-disc list-inside space-y-2 text-text/70">
                                 {job.achievements.map((point, i) => (
                                     <li key={i}>{point}</li>

@@ -14,8 +14,8 @@ const About = () => {
                 </p>
 
                 {portfolioData.jobPreferences && (
-                    <div className="bg-surface/50 p-6 rounded-lg border border-white/5 mt-6">
-                        <h3 className="text-lg font-bold text-white mb-4">Open to Work</h3>
+                    <div className="bg-surface/5 p-6 rounded-lg border border-black/10 mt-6">
+                        <h3 className="text-lg font-bold text-text mb-4">Open to Work</h3>
                         <div className="grid grid-cols-3 gap-8 text-sm text-text/70">
                             <div>
                                 <span className="block text-primary text-xs mb-1 font-semibold">Roles</span>
