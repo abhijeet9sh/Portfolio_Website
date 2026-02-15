@@ -4,28 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/Portfolio_Website/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO Meta Tags -->
+  <meta name="theme-color" content="#E7E8D3" />
   <title>Abhijeet Priyankar | DevOps Engineer & Cloud Architect</title>
-  <meta name="description"
-    content="DevOps Engineer with 3+ years of experience in Azure, Kubernetes, GitOps, and CI/CD automation. Specialized in cloud infrastructure optimization and microservices deployment." />
-  <meta name="keywords"
-    content="DevOps Engineer, Azure, Kubernetes, GitOps, CI/CD, Cloud Engineer, Terraform, ArgoCD, India, New Delhi" />
-  <meta name="author" content="Abhijeet Priyankar" />
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Abhijeet Priyankar | DevOps Engineer" />
+  <meta property="og:title" content="Abhijeet Priyankar | DevOps Engineer & SRE" />
   <meta property="og:description"
-    content="DevOps Engineer specializing in Azure, Kubernetes, and GitOps. 60% cost reduction, 70% faster deployments." />
-  <meta property="og:image" content="/Portfolio_Website/assets/images/profile-pic.png" />
-  <meta property="og:url" content="https://abhijeet9sh.github.io" />
+    content="DevOps Engineer & Site Reliability Engineer specializing in Azure, Kubernetes, and GitOps. Building resilient cloud infrastructure." />
+  <meta property="og:image" content="/Portfolio_Website/assets/images/profile-dithered.png" />
+  <meta property="og:url" content="https://abhijeet9sh.github.io/Portfolio_Website/" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Abhijeet Priyankar | DevOps Engineer" />
-  <meta name="twitter:description" content="3+ years experience in Cloud Infrastructure & DevOps" />
+  <meta name="twitter:description" content="DevOps & SRE Portfolio. Azure, Kubernetes, Terraform." />
+  <meta name="twitter:image" content="/Portfolio_Website/assets/images/profile-dithered.png" />
 
   <!-- Google Analytics (Replace YOUR_GA_ID with actual ID) -->
   <!-- Uncomment when you have GA4 tracking ID -->
@@ -36,12 +30,37 @@
       gtag('js', new Date());
       gtag('config', 'YOUR_GA_ID');
     </script> -->
-  <script type="module" crossorigin src="/Portfolio_Website/assets/index-Z2-dQfpc.js"></script>
-  <link rel="stylesheet" crossorigin href="/Portfolio_Website/assets/index-5WV24TaR.css">
+  <script type="module" crossorigin src="/Portfolio_Website/assets/index-D2dvWpB2.js"></script>
+  <link rel="stylesheet" crossorigin href="/Portfolio_Website/assets/index-4gncJvTb.css">
 </head>
 
 <body>
   <div id="root"></div>
+
+  <!-- Halftone SVG Filter -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;">
+    <filter id="halftone">
+      <!-- Create dot pattern -->
+      <feImage
+        xlink:href="data:image/svg+xml;charset=utf-8,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23000'/%3E%3C/svg%3E"
+        result="dotPattern" x="0" y="0" width="4" height="4" />
+      <feTile in="dotPattern" result="dots" />
+
+      <!-- Luminance map of source image -->
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="luminance" />
+
+      <!-- Invert Alpha: Dark areas become Opaque (visible dots), Bright areas become Transparent -->
+      <feComponentTransfer in="luminance" result="invertedLuminance">
+        <feFuncA type="table" tableValues="1 0" />
+      </feComponentTransfer>
+
+      <!-- Mask dots with inverted luminance -->
+      <feComposite in="dots" in2="invertedLuminance" operator="in" result="maskedDots" />
+
+      <!-- Final: Composite SourceGraphic (Color) with the Dot Mask -->
+      <feComposite in="SourceGraphic" in2="maskedDots" operator="in" result="final" />
+    </filter>
+  </svg>
 </body>
 
 </html>
