@@ -13,9 +13,14 @@ import Contact from "./components/sections/Contact";
 import NotFound from "./components/pages/NotFound";
 import Terminal from "./components/ui/Terminal";
 import KonamiEasterEgg from "./components/ui/KonamiEasterEgg";
+import DevOpsTicker from "./components/ui/DevOpsTicker";
+import ProjectDetail from "./components/pages/ProjectDetail";
+
+import DeploymentModal from "./components/ui/DeploymentModal";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isDeploymentOpen, setIsDeploymentOpen] = useState(false);
 
   useEffect(() => {
     // Simulate initial load
@@ -37,12 +42,15 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <div className="bg-background min-h-screen text-text selection:bg-primary/20 selection:text-primary">
-        <Terminal />
+        <Terminal onDeploy={() => setIsDeploymentOpen(true)} />
         <KonamiEasterEgg />
+        <DevOpsTicker />
+        <DeploymentModal isOpen={isDeploymentOpen} onClose={() => setIsDeploymentOpen(false)} />
         <Routes>
           <Route path="/" element={
             <>
               <Header />
+              {/* ... existing main content ... */}
               <main className="flex flex-col gap-10">
                 <Hero />
                 <About />
@@ -53,9 +61,10 @@ function App() {
                 <Certifications />
                 <Contact />
               </main>
-              <Footer />
+              <Footer onDeploy={() => setIsDeploymentOpen(true)} />
             </>
           } />
+          <Route path="/project/:projectId" element={<ProjectDetail />} /> {/* Added ProjectDetail route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

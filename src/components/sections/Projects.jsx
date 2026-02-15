@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import BentoCard from "../ui/BentoCard";
 import Badge from "../ui/Badge";
@@ -70,6 +71,11 @@ const Projects = () => {
                                             {tag}
                                         </Badge>
                                     ))}
+                                    {project.id && (
+                                        <Link to={`/project/${project.id}`} className="ml-auto text-xs font-mono font-bold text-primary hover:underline flex items-center gap-1">
+                                            READ CASE STUDY &rarr;
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </BentoCard>

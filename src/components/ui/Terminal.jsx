@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaTerminal, FaTimes, FaChevronRight } from 'react-icons/fa';
 import { portfolioData } from '../../data/portfolio';
 
-const Terminal = () => {
+const Terminal = ({ onDeploy }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState('');
     const [history, setHistory] = useState([
@@ -15,12 +15,7 @@ const Terminal = () => {
 
     const { personal, skills, social } = portfolioData;
 
-    // Auto-scroll to bottom
-    useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [history, isOpen]);
+    // ... existing useEffects ...
 
     // Focus input when clicking anywhere in terminal
     const handleTerminalClick = () => {
@@ -42,6 +37,7 @@ const Terminal = () => {
                                 <span className="text-white">whoami</span><span>- About Abhijeet</span>
                                 <span className="text-white">skills</span><span>- Technical Stack</span>
                                 <span className="text-white">contact</span><span>- Contact Info</span>
+                                <span className="text-white">deploy</span><span>- <span className="text-green-400">Deploy to Prod</span></span>
                                 <span className="text-white">clear</span><span>- Clear screen</span>
                                 <span className="text-white">exit</span><span>- Close terminal</span>
                             </div>
@@ -94,8 +90,21 @@ const Terminal = () => {
                     )
                 });
                 break;
+            case 'deploy':
+                newHistory.push({
+                    type: 'output',
+                    content: "Initiating deployment sequence..."
+                });
+                setIsOpen(false);
+                setTimeout(() => {
+                    onDeploy && onDeploy();
+                }, 500);
+                break;
             case 'clear':
-                setHistory([]);
+                setHistory([
+                    { type: 'output', content: 'Welcome to AbhiShell v1.0.0' },
+                    { type: 'output', content: 'Type "help" to see available commands.' },
+                ]);
                 return; // Special case, don't use newHistory
             case 'exit':
                 setIsOpen(false);
@@ -179,7 +188,8 @@ const Terminal = () => {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
-                                    className="bg-transparent border-none outline-none text-[#FFA54D] flex-1 caret-[#FFA54D]"
+                                    className="bg-transparent border-none outline-none text-[#FFA54D] flex-1 caret-[#FFA54D] placeholder-white/20"
+                                    placeholder='Type "help" to start...'
                                     autoFocus
                                     spellCheck="false"
                                     autoComplete="off"

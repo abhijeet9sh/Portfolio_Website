@@ -69,18 +69,51 @@ export const portfolioData = {
     projects: {
         job: [
             {
+                id: "devops-infrastructure-modernization",
                 title: "DevOps Infrastructure Modernization & Secure CI/CD",
-                description: "Led full-scale DevOps transformation for DCD & BSP teams. Designed modern infrastructure, migrated from JIRA to Taiga, replaced Bitbucket/Jenkins with GitLab CE, and implemented secure CI/CD pipelines with VAPT scans, Vault secrets management, and IDM authentication. Reduced deployment times by 40% and infrastructure costs by 60%.",
+                description: "Led full-scale DevOps transformation for DCD & BSP teams. Designed modern infrastructure, migrated from JIRA to Taiga, and implemented secure CI/CD pipelines.",
+                banner: "/tech-background.jpg",
                 tags: ["GitLab CE", "GitLab CI/CD", "Docker", "Kubernetes", "Vault", "Terraform", "VAPT", "Sonarqube"],
                 link: "https://www.linkedin.com/in/abhijeet-priyankar-4a60566b/details/projects/",
-                duration: "Jan 2025 – Present"
+                duration: "Jan 2025 – Present",
+                challenge: "The existing infrastructure relied on manual deployments, legacy tools (Jenkins/Bitbucket), and lacked centralized secret management, leading to slow release cycles, security vulnerabilities, and high operational costs.",
+                solution: "Architected a complete overhaul using GitLab CE for SCM and CI/CD. Containerized microservices with Docker and orchestrated them via Kubernetes (MicroK8s/AKS). Integrated HashiCorp Vault for secrets, SonarQube for code quality, and automated VAPT scans for security compliance.",
+                architecture: [
+                    "Code: GitLab CE (Self-Hosted)",
+                    "Build: GitLab CI/CD + Docker",
+                    "Security: Vault + SonarQube + Trivy",
+                    "Deploy: ArgoCD (GitOps) -> Kubernetes",
+                    "Monitor: Prometheus + Grafana"
+                ],
+                result: [
+                    "🚀 Reduced deployment time by 40% via automated pipelines.",
+                    "💰 Cut infrastructure costs by 60% through resource optimization.",
+                    "fw-bold🔒 Enhanced security posture with automated VAPT and secret management.",
+                    "📈 Improved developer productivity by migrating to a unified GitLab ecosystem."
+                ]
             },
             {
+                id: "trellix-saas-migration",
                 title: "Migration from McAfee to Trellix SaaS EPO",
-                description: "Led seamless migration of endpoint security from McAfee On-Premises to Trellix SaaS EPO. Eliminated on-premises server costs, enhanced security management with centralized control, modified DLP and firewall policies, and leveraged automated policy enforcement for improved threat detection and compliance.",
+                description: "Led seamless migration of endpoint security from McAfee On-Premises to Trellix SaaS EPO. Eliminated on-premises server costs and enhanced security management.",
+                banner: "/tech-background.jpg",
                 tags: ["McAfee", "Trellix EPO", "Security Management", "DLP", "Cloud Migration"],
                 link: "https://www.linkedin.com/in/abhijeet-priyankar-4a60566b/details/projects/",
-                duration: "May 2024 – Jul 2024"
+                duration: "May 2024 – Jul 2024",
+                challenge: "High maintenance costs and hardware dependency of on-premises McAfee servers. Inefficient policy propagation and lack of real-time threat visibility across distributed endpoints.",
+                solution: "Executed a strategic migration to Trellix SaaS EPO. Configured cloud-based policies for DLP, Firewalls, and Threat Prevention. implemented a staged rollout to minimalize user impact and ensured 100% compliance across all workstations.",
+                architecture: [
+                    "Source: McAfee On-Prem EPO Servers",
+                    "Destination: Trellix SaaS Cloud Platform",
+                    "Agents: Trellix Agent 5.7+",
+                    "Modules: ENS (Endpoint Security), DLP, Drive Encryption"
+                ],
+                result: [
+                    "☁️ Eliminated 100% of on-prem security server hardware costs.",
+                    "🛡️ Achieved real-time global threat visibility and policy enforcement.",
+                    "⚡ Faster incident response times via cloud-based console.",
+                    "🔄 Seamless zero-downtime migration for 500+ endpoints."
+                ]
             }
         ],
         sideHustle: [
